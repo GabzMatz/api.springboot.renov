@@ -1,7 +1,7 @@
 package org.elink.renov.services;
 
 import org.elink.renov.DTO.UsuarioDTO;
-import org.elink.renov.entity.Usuario;
+import org.elink.renov.entity.usuario.Usuario;
 import org.elink.renov.repository.UsuarioRepositorty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,6 @@ public class UsuarioService {
         usuario.setTipoUsuario(usuarioDTO.getTipoUsuario());
         return usuarioRepository.save(usuario);
     }
-
     //LOGIN
     public boolean validateUser(String email, String senha) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);

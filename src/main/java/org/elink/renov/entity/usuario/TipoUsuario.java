@@ -1,4 +1,4 @@
-package org.elink.renov.entity;
+package org.elink.renov.entity.usuario;
 
 public enum TipoUsuario {
     ADMIN,

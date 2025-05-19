@@ -1,6 +1,8 @@
 package org.elink.renov.DTO;
 
-import org.elink.renov.entity.TipoUsuario;
+
+
+import org.elink.renov.entity.usuario.TipoUsuario;
 
 import java.time.LocalDateTime;
 
