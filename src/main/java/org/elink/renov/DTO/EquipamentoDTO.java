@@ -1,14 +1,7 @@
 package org.elink.renov.DTO;
 
-
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-@Getter
-@Setter
+
 public class EquipamentoDTO {
 
     private Integer equipamentoID;
@@ -16,11 +9,9 @@ public class EquipamentoDTO {
     private String tipoEquipamento;
     private String modelo;
     private String numeroSerie;
-    private LocalDate dataInstalacao;
+    private String fabricante;
+    private Boolean temNotificacao;
     private Integer vidaUtilEstimada;
-    private String status;
-    private String localizacao;
-    private Integer usoAcumulado;
     private LocalDateTime dataCriacao;
     private LocalDateTime ultimaAtualizacao;
 
@@ -64,12 +55,20 @@ public class EquipamentoDTO {
         this.numeroSerie = numeroSerie;
     }
 
-    public LocalDate getDataInstalacao() {
-        return dataInstalacao;
+    public String getFabricante() {
+        return fabricante;
     }
 
-    public void setDataInstalacao(LocalDate dataInstalacao) {
-        this.dataInstalacao = dataInstalacao;
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public Boolean getTemNotificacao() {
+        return temNotificacao;
+    }
+
+    public void setTemNotificacao(Boolean temNotificacao) {
+        this.temNotificacao = temNotificacao;
     }
 
     public Integer getVidaUtilEstimada() {
@@ -78,30 +77,6 @@ public class EquipamentoDTO {
 
     public void setVidaUtilEstimada(Integer vidaUtilEstimada) {
         this.vidaUtilEstimada = vidaUtilEstimada;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public Integer getUsoAcumulado() {
-        return usoAcumulado;
-    }
-
-    public void setUsoAcumulado(Integer usoAcumulado) {
-        this.usoAcumulado = usoAcumulado;
     }
 
     public LocalDateTime getDataCriacao() {

@@ -22,9 +22,13 @@ public class Usuario {
     @Column(name = "Senha", nullable = false)
     private String senha;
 
+    private LocalDateTime dataNascimento;
+
+    private String cpf;
+
     @Column(name = "TipoUsuario", nullable = false, length = 50)
     @Enumerated(EnumType.STRING)
-    private TipoUsuario tipoUsuario;
+    private TipoUsuario tipoUsuario = TipoUsuario.USER;
 
     @Column(name = "DataCriacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
@@ -53,6 +57,23 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+
+    public LocalDateTime getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDateTime dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public void setNome(String nome) {

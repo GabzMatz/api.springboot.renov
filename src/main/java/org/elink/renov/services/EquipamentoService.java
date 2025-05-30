@@ -39,12 +39,8 @@ public class EquipamentoService {
         equipamento.setTipoEquipamento(equipamentoDTO.getTipoEquipamento());
         equipamento.setModelo(equipamentoDTO.getModelo());
         equipamento.setNumeroSerie(equipamentoDTO.getNumeroSerie());
-        equipamento.setDataInstalacao(equipamentoDTO.getDataInstalacao());
         equipamento.setVidaUtilEstimada(equipamentoDTO.getVidaUtilEstimada());
-        equipamento.setStatus(equipamentoDTO.getStatus());
-        equipamento.setLocalizacao(equipamentoDTO.getLocalizacao());
-        equipamento.setUsoAcumulado(equipamentoDTO.getUsoAcumulado());
-
+        equipamento.setFabricante(equipamento.getFabricante());
         return equipamentoRepository.save(equipamento);
     }
 
@@ -66,11 +62,7 @@ public class EquipamentoService {
                     equipamentoExistente.setTipoEquipamento(novoEquipamento.getTipoEquipamento());
                     equipamentoExistente.setModelo(novoEquipamento.getModelo());
                     equipamentoExistente.setNumeroSerie(novoEquipamento.getNumeroSerie());
-                    equipamentoExistente.setDataInstalacao(novoEquipamento.getDataInstalacao());
                     equipamentoExistente.setVidaUtilEstimada(novoEquipamento.getVidaUtilEstimada());
-                    equipamentoExistente.setStatus(novoEquipamento.getStatus());
-                    equipamentoExistente.setLocalizacao(novoEquipamento.getLocalizacao());
-                    equipamentoExistente.setUsoAcumulado(novoEquipamento.getUsoAcumulado());
                     return equipamentoRepository.save(equipamentoExistente);
                 });
     }

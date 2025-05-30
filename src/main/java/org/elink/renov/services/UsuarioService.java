@@ -34,6 +34,9 @@ public class UsuarioService {
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setSenha(usuarioDTO.getSenha());
         usuario.setTipoUsuario(usuarioDTO.getTipoUsuario());
+        usuario.setDataNascimento(usuarioDTO.getDataNascimento());
+        usuario.setCpf(usuarioDTO.getCpf());
+
         return usuarioRepository.save(usuario);
     }
     //LOGIN

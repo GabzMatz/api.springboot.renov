@@ -1,10 +1,13 @@
 package org.elink.renov.entity.equipamento;
 
 import jakarta.persistence.*;
+import org.elink.renov.entity.notificacao.Notificacao;
 import org.elink.renov.entity.usuario.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Equipamento")
@@ -20,7 +23,7 @@ public class Equipamento {
     @JoinColumn(name = "UsuarioID", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "TipoEquipamento", nullable = false)
+    @Column(name = "TipoEquipamento")
     private String tipoEquipamento;
 
     @Column(length = 100)
@@ -29,17 +32,14 @@ public class Equipamento {
     @Column(length = 100)
     private String numeroSerie;
 
-    private LocalDate dataInstalacao;
+    private String fabricante;
+
+    @OneToMany(mappedBy = "equipamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notificacao> notificacoes = new ArrayList<>();
+
+    private Boolean temNotificacao = false;
 
     private Integer vidaUtilEstimada;
-
-    @Column(length = 50)
-    private String status;
-
-    @Column(length = 255)
-    private String localizacao;
-
-    private Integer usoAcumulado;
 
     @Column(updatable = false)
     private LocalDateTime dataCriacao;
@@ -55,6 +55,30 @@ public class Equipamento {
     @PreUpdate
     protected void onUpdate() {
         this.ultimaAtualizacao = LocalDateTime.now();
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public List<Notificacao> getNotificacoes() {
+        return notificacoes;
+    }
+
+    public void setNotificacoes(List<Notificacao> notificacoes) {
+        this.notificacoes = notificacoes;
+    }
+
+    public Boolean getTemNotificacao() {
+        return temNotificacao;
+    }
+
+    public void setTemNotificacao(Boolean temNotificacao) {
+        this.temNotificacao = temNotificacao;
     }
 
     public Integer getEquipamentoID() {
@@ -97,13 +121,7 @@ public class Equipamento {
         this.numeroSerie = numeroSerie;
     }
 
-    public LocalDate getDataInstalacao() {
-        return dataInstalacao;
-    }
 
-    public void setDataInstalacao(LocalDate dataInstalacao) {
-        this.dataInstalacao = dataInstalacao;
-    }
 
     public Integer getVidaUtilEstimada() {
         return vidaUtilEstimada;
@@ -113,29 +131,6 @@ public class Equipamento {
         this.vidaUtilEstimada = vidaUtilEstimada;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public Integer getUsoAcumulado() {
-        return usoAcumulado;
-    }
-
-    public void setUsoAcumulado(Integer usoAcumulado) {
-        this.usoAcumulado = usoAcumulado;
-    }
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;

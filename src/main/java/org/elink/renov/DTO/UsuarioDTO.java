@@ -13,9 +13,11 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private String senha;
-    private TipoUsuario tipoUsuario;
-    private LocalDateTime dataCriacao;
-    private LocalDateTime ultimaAtualizacao;
+    private TipoUsuario tipoUsuario = TipoUsuario.USER;
+    private LocalDateTime dataNascimento;
+    private String cpf;
+
+
 
     public Integer getId() {
         return id;
@@ -55,5 +57,22 @@ public class UsuarioDTO {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDateTime getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDateTime dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
