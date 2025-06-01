@@ -2,6 +2,7 @@ package org.elink.renov.entity.equipamento;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.elink.renov.entity.notificacao.Notificacao;
 import org.elink.renov.entity.usuario.Usuario;
@@ -37,7 +38,8 @@ public class Equipamento {
     private String fabricante;
 
     @OneToMany(mappedBy = "equipamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Notificacao> notificacoes = new ArrayList<>();
+    @JsonManagedReference
+    private List<Notificacao> notificacoes;
 
     private Boolean temNotificacao = false;
 

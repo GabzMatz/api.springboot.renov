@@ -16,6 +16,9 @@ public class NotificacaoDTO {
     private Boolean status;
     private String titulo;
 
+    public NotificacaoDTO() {
+    }
+
     public NotificacaoDTO(Notificacao notificacao) {
         this.id = notificacao.getId();
         this.equipamentoId = notificacao.getEquipamento() != null ? notificacao.getEquipamento().getEquipamentoID() : null;

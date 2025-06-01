@@ -1,6 +1,7 @@
 package org.elink.renov.entity.notificacao;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Notificacao {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "equipamentoid", nullable = false)
+    @JsonBackReference
     private Equipamento equipamento;
 
     @Column(name = "datadiaalerta")
