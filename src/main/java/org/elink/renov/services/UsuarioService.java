@@ -40,8 +40,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
     //LOGIN
-    public boolean validateUser(String email, String senha) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-        return usuarioOptional.isPresent() && usuarioOptional.get().getSenha().equals(senha);
+    public Usuario findByEmailAndSenha(String email, String senha) {
+        return usuarioRepository.findByEmailAndSenha(email, senha).orElse(null);
     }
 }

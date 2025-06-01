@@ -43,11 +43,11 @@ public class UserController {
 
     //Login
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UsuarioDTO usuario) {
-        boolean isValid = usuarioService.validateUser(usuario.getEmail(), usuario.getSenha());
+    public ResponseEntity<?> login(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioService.findByEmailAndSenha(usuarioDTO.getEmail(), usuarioDTO.getSenha());
 
-        if (isValid) {
-            return ResponseEntity.ok("Login bem-sucedido");
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
         } else {
             return ResponseEntity.status(401).body("Credenciais inválidas");
         }

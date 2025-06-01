@@ -1,10 +1,11 @@
 package org.elink.renov.entity.equipamento;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.elink.renov.entity.notificacao.Notificacao;
 import org.elink.renov.entity.usuario.Usuario;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Equipamento {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "UsuarioID", nullable = false)
+    @JsonIgnore
     private Usuario usuario;
 
     @Column(name = "TipoEquipamento")
@@ -39,7 +41,15 @@ public class Equipamento {
 
     private Boolean temNotificacao = false;
 
-    private Integer vidaUtilEstimada;
+    private Boolean status = true;
+
+    public Boolean getStatus(Boolean status) {
+        return this.status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @Column(updatable = false)
     private LocalDateTime dataCriacao;
@@ -121,15 +131,6 @@ public class Equipamento {
         this.numeroSerie = numeroSerie;
     }
 
-
-
-    public Integer getVidaUtilEstimada() {
-        return vidaUtilEstimada;
-    }
-
-    public void setVidaUtilEstimada(Integer vidaUtilEstimada) {
-        this.vidaUtilEstimada = vidaUtilEstimada;
-    }
 
 
     public LocalDateTime getDataCriacao() {

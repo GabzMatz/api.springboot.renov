@@ -14,6 +14,8 @@ public class EquipamentoDTO {
     private Integer vidaUtilEstimada;
     private LocalDateTime dataCriacao;
     private LocalDateTime ultimaAtualizacao;
+    private Boolean status = true;
+
 
     public Integer getEquipamentoID() {
         return equipamentoID;
@@ -53,6 +55,15 @@ public class EquipamentoDTO {
 
     public void setNumeroSerie(String numeroSerie) {
         this.numeroSerie = numeroSerie;
+    }
+
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public String getFabricante() {

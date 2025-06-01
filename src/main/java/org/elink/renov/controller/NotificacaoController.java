@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -20,7 +19,6 @@ public class NotificacaoController {
     private NotificacaoService notificacaoService;
 
 
-    //Criar Notificacao
     @PostMapping
     public ResponseEntity<Notificacao> criarNotificacao(@RequestBody NotificacaoDTO dto) {
         try {
@@ -31,7 +29,6 @@ public class NotificacaoController {
         }
     }
 
-    // Buscar todas as notificações por ID de usuário
     @GetMapping("/{usuarioId}")
     public ResponseEntity<List<Notificacao>> buscarPorUsuarioId(@PathVariable Integer usuarioId) {
         List<Notificacao> notificacoes = notificacaoService.buscarPorUsuarioId(usuarioId);
@@ -40,4 +37,27 @@ public class NotificacaoController {
         }
         return new ResponseEntity<>(notificacoes, HttpStatus.OK);
     }
+
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Notificacao notificacao) {
+        try {
+            Notificacao atualizada = notificacaoService.updateNotificacao(id, notificacao);
+            return ResponseEntity.ok(atualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        try {
+            notificacaoService.deleteNotificacao(id);
+            return ResponseEntity.ok("Notificação deletada com sucesso.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

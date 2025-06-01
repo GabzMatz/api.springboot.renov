@@ -1,8 +1,11 @@
 package org.elink.renov.entity.usuario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.elink.renov.entity.equipamento.Equipamento;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -12,6 +15,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UsuarioID")
     private Integer id;
+
+
+    // Na classe Usuario
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore // ou @JsonBackReference se quiser usar referência gerenciada
+    private List<Equipamento> equipamentos;
+
+
 
     @Column(name = "Nome", nullable = false, length = 100)
     private String nome;
@@ -33,18 +44,10 @@ public class Usuario {
     @Column(name = "DataCriacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
 
-    @Column(name = "UltimaAtualizacao", nullable = false)
-    private LocalDateTime ultimaAtualizacao;
 
     @PrePersist
     protected void onCreate() {
         this.dataCriacao = LocalDateTime.now();
-        this.ultimaAtualizacao = this.dataCriacao;
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.ultimaAtualizacao = LocalDateTime.now();
     }
 
     public Integer getId() {
@@ -112,11 +115,4 @@ public class Usuario {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDateTime getUltimaAtualizacao() {
-        return ultimaAtualizacao;
-    }
-
-    public void setUltimaAtualizacao(LocalDateTime ultimaAtualizacao) {
-        this.ultimaAtualizacao = ultimaAtualizacao;
-    }
 }

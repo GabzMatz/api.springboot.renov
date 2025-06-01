@@ -5,6 +5,7 @@ package org.elink.renov.DTO;
 import org.elink.renov.entity.usuario.TipoUsuario;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class UsuarioDTO {
@@ -13,11 +14,19 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private String senha;
+    private List<EquipamentoDTO> equipamentos;
     private TipoUsuario tipoUsuario = TipoUsuario.USER;
     private LocalDateTime dataNascimento;
     private String cpf;
 
 
+    public List<EquipamentoDTO> getEquipamentos() {
+        return equipamentos;
+    }
+
+    public void setEquipamentos(List<EquipamentoDTO> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
 
     public Integer getId() {
         return id;
