@@ -19,7 +19,6 @@ public class Notificacao {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "equipamentoid", nullable = false)
-    @JsonIgnore
     private Equipamento equipamento;
 
     @Column(name = "datadiaalerta")

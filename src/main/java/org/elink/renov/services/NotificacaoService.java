@@ -43,8 +43,11 @@ public class NotificacaoService {
 
 
     //TODAS AS NOTIFICACOES POR ID DE USUARIO
-    public List<Notificacao> buscarPorUsuarioId(Integer usuarioId) {
-        return notificacaoRepository.findByEquipamentoUsuarioId(usuarioId);
+    public List<NotificacaoDTO> listarPorUsuario(Integer usuarioId) {
+        List<Notificacao> notificacoes = notificacaoRepository.findByEquipamentoUsuarioId(usuarioId);
+        return notificacoes.stream()
+                .map(NotificacaoDTO::new)
+                .toList();
     }
 
 

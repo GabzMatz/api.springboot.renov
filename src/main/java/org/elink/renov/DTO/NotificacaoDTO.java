@@ -1,5 +1,7 @@
 package org.elink.renov.DTO;
 
+import org.elink.renov.entity.notificacao.Notificacao;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,6 +15,16 @@ public class NotificacaoDTO {
     private String descricao;
     private Boolean status;
     private String titulo;
+
+    public NotificacaoDTO(Notificacao notificacao) {
+        this.id = notificacao.getId();
+        this.equipamentoId = notificacao.getEquipamento() != null ? notificacao.getEquipamento().getEquipamentoID() : null;
+        this.dataDiaAlerta = notificacao.getDataDiaAlerta();
+        this.dataHoraAlerta = notificacao.getDataHoraAlerta();
+        this.descricao = notificacao.getDescricao();
+        this.status = notificacao.getStatus();
+        this.titulo = notificacao.getTitulo();
+    }
 
     public Integer getId() {
         return id;

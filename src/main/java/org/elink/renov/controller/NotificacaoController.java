@@ -30,12 +30,8 @@ public class NotificacaoController {
     }
 
     @GetMapping("/{usuarioId}")
-    public ResponseEntity<List<Notificacao>> buscarPorUsuarioId(@PathVariable Integer usuarioId) {
-        List<Notificacao> notificacoes = notificacaoService.buscarPorUsuarioId(usuarioId);
-        if (notificacoes.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(notificacoes, HttpStatus.OK);
+    public ResponseEntity<List<NotificacaoDTO>> listarPorUsuario(@PathVariable Integer usuarioId) {
+        return ResponseEntity.ok(notificacaoService.listarPorUsuario(usuarioId));
     }
 
 
