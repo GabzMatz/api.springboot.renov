@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/notificacoes")
@@ -36,10 +37,10 @@ public class NotificacaoController {
 
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Notificacao notificacao) {
+    @PutMapping("/{notificacaoid}")
+    public ResponseEntity<?> update(@PathVariable Integer notificacaoid, @RequestBody Notificacao notificacao) {
         try {
-            Notificacao atualizada = notificacaoService.updateNotificacao(id, notificacao);
+            Optional<Notificacao> atualizada = notificacaoService.updateNotificacao(notificacaoid, notificacao);
             return ResponseEntity.ok(atualizada);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

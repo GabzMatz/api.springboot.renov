@@ -9,7 +9,8 @@ import java.util.List;
 public interface NotificacaoRepository extends JpaRepository<Notificacao, Integer> {
 
     List<Notificacao> findByEquipamentoUsuarioId(Integer usuarioId);
-    List<Notificacao> findByStatusFalseAndDataHoraAlertaBefore(LocalDateTime now);
+   List<Notificacao> findByStatusTrueAndDataHoraAlertaBefore(LocalDateTime now);
+
 
 
 }

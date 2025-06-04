@@ -52,17 +52,19 @@ public class NotificacaoService {
 
 
 
-    public Notificacao updateNotificacao(Integer id, Notificacao novaNotificacao) {
+    public Optional<Notificacao> updateNotificacao(Integer id, Notificacao novaNotificacao) {
         return notificacaoRepository.findById(id).map(existing -> {
             existing.setDataDiaAlerta(novaNotificacao.getDataDiaAlerta());
             existing.setDataHoraAlerta(novaNotificacao.getDataHoraAlerta());
             existing.setDescricao(novaNotificacao.getDescricao());
             existing.setStatus(novaNotificacao.getStatus());
             existing.setTitulo(novaNotificacao.getTitulo());
-            existing.setEquipamento(novaNotificacao.getEquipamento());
+
+
             return notificacaoRepository.save(existing);
-        }).orElseThrow(() -> new RuntimeException("Notificação não encontrada com id: " + id));
+        });
     }
+
 
     public void deleteNotificacao(Integer id) {
         if (!notificacaoRepository.existsById(id)) {
